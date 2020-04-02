@@ -261,12 +261,39 @@ window.onload = function() {
         var absY = Math.abs(y)>Math.abs(x);
         if (x>0 && absX) {
             moveRight();
+            var audio = document.createElement("audio");
+            audio.src = "./music/m1.mp3";
+            audio.play();
+            setTimeout(generateNum,350);
+            setTimeout(isGameOver,800);
         }else if (x<0 && absX) {
             moveLeft();
+            var audio = document.createElement("audio");
+            audio.src = "./music/m1.mp3";
+            audio.play();
+            setTimeout(generateNum,350);
+            setTimeout(isGameOver,800);
         }else if (y>0 && absY) {
             moveDown();
+            var audio = document.createElement("audio");
+            audio.src = "./music/m1.mp3";
+            audio.play();
+            setTimeout(generateNum,350);
+            setTimeout(isGameOver,800);
         }else if (y<0 && absY) {
             moveUp();
+            var audio = document.createElement("audio");
+            audio.src = "./music/m1.mp3";
+            audio.play();
+            setTimeout(generateNum,350);
+            setTimeout(isGameOver,800);
         }
     });
+    document.addEventListener("touchmove", function() {
+        if(this.flags===true){
+            event.preventDefault();
+        }else{
+            return true
+        }
+    }, {passive: false});
 };

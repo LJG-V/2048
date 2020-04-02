@@ -15,7 +15,7 @@ h1 img{
     height: 100px;
     float: left;
     position: absolute;
-    left: 620px;
+    margin-left: -100px;
     margin-top: -20px;
 
 }
