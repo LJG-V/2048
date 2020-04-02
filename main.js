@@ -33,9 +33,10 @@ window.onload = function() {
 
     function updateCellView() {
         let remove = document.getElementsByClassName("number-cell");
-        for (let i = 0; i < remove.length;) {
-                let numcell = remove[i];
+        for (let i = 0; i < remove.length;i++) {
+                let numcell = remove[0];
                 numcell.parentNode.removeChild(numcell);
+                // remove.length++;
         }
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
@@ -289,11 +290,4 @@ window.onload = function() {
             setTimeout(isGameOver,800);
         }
     });
-    document.addEventListener("touchmove", function() {
-        if(this.flags===true){
-            event.preventDefault();
-        }else{
-            return true
-        }
-    }, {passive: false});
 };
