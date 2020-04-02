@@ -33,10 +33,9 @@ window.onload = function() {
 
     function updateCellView() {
         let remove = document.getElementsByClassName("number-cell");
-        for (let i = 0; i < remove.length;i++) {
-                let numcell = remove[0];
-                numcell.parentNode.removeChild(numcell);
-                // remove.length++;
+        for (let i = 0; i < remove.length;) {
+                let ncell = remove[i];
+                ncell.parentNode.removeChild(ncell);
         }
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
@@ -87,7 +86,7 @@ window.onload = function() {
                     var audio = document.createElement("audio");
                     audio.src = "./music/m1.mp3";
                     audio.play();
-                    window.setTimeout(generateNum,350);
+                    window.setTimeout(generateNum,500);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -96,7 +95,7 @@ window.onload = function() {
                     var audio = document.createElement("audio");
                     audio.src = "./music/m1.mp3";
                     audio.play();
-                    window.setTimeout(generateNum,350);
+                    window.setTimeout(generateNum,500);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -105,7 +104,7 @@ window.onload = function() {
                     var audio = document.createElement("audio");
                     audio.src = "./music/m1.mp3";
                     audio.play();
-                    window.setTimeout(generateNum,350);
+                    window.setTimeout(generateNum,500);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -114,7 +113,7 @@ window.onload = function() {
                     var audio = document.createElement("audio");
                     audio.src = "./music/m1.mp3";
                     audio.play();
-                    window.setTimeout(generateNum,350);
+                    window.setTimeout(generateNum,500);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -261,33 +260,37 @@ window.onload = function() {
         var absX = Math.abs(x)>Math.abs(y);
         var absY = Math.abs(y)>Math.abs(x);
         if (x>0 && absX) {
-            moveRight();
-            var audio = document.createElement("audio");
-            audio.src = "./music/m1.mp3";
-            audio.play();
-            setTimeout(generateNum,350);
-            setTimeout(isGameOver,800);
+            if (moveRight()) {
+                var audio = document.createElement("audio");
+                audio.src = "./music/m1.mp3";
+                audio.play();
+                setTimeout(generateNum,500);
+                setTimeout(isGameOver,800);
+            }
         }else if (x<0 && absX) {
-            moveLeft();
-            var audio = document.createElement("audio");
-            audio.src = "./music/m1.mp3";
-            audio.play();
-            setTimeout(generateNum,350);
-            setTimeout(isGameOver,800);
+            if (moveLeft()) {
+                var audio = document.createElement("audio");
+                audio.src = "./music/m1.mp3";
+                audio.play();
+                setTimeout(generateNum,500);
+                setTimeout(isGameOver,800);
+            }
         }else if (y>0 && absY) {
-            moveDown();
-            var audio = document.createElement("audio");
-            audio.src = "./music/m1.mp3";
-            audio.play();
-            setTimeout(generateNum,350);
-            setTimeout(isGameOver,800);
+            if (moveDown()) {
+                var audio = document.createElement("audio");
+                audio.src = "./music/m1.mp3";
+                audio.play();
+                setTimeout(generateNum,500);
+                setTimeout(isGameOver,800);
+            }
         }else if (y<0 && absY) {
-            moveUp();
-            var audio = document.createElement("audio");
-            audio.src = "./music/m1.mp3";
-            audio.play();
-            setTimeout(generateNum,350);
-            setTimeout(isGameOver,800);
+            if (moveUp()) {
+                var audio = document.createElement("audio");
+                audio.src = "./music/m1.mp3";
+                audio.play();
+                setTimeout(generateNum,500);
+                setTimeout(isGameOver,800);
+            }
         }
     });
 };
