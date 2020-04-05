@@ -25,6 +25,25 @@ h1 img{
     margin-top: -20px;
 
 }
+#grade{
+    margin-left: -250px;
+}
+#highest{
+    margin-top: -46.1px;
+    margin-left: 240px;
+}
+#highest img{
+    width: 100px;
+    height: 100px;
+    float: right;
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -55px;
+    visibility: hidden;
+}
+#max{
+    font-size: 2em;
+}
 #header{
     display: block;
     margin: 0 auto;
@@ -97,4 +116,11 @@ h1 img{
     font-weight: bold;
     font-family: 华文彩云;
     opacity: 1;
+}
+
+#bottom{
+    text-align: center;
+    color: darkred;
+    font-weight: bold;
+    font-size: 1.2em;
 }

@@ -76,7 +76,6 @@ function canMoveRight(cells) {
         }
     }
 }
-
 function noBlockHorizontal(row,col1,col2,cells) {
     for (let i = col1 +1;i < col2;i++) {
         if (cells[row][i] !== 0) {
@@ -85,7 +84,6 @@ function noBlockHorizontal(row,col1,col2,cells) {
     }
     return true;
 }
-
 function noBlockVertical(col,row1,row2,cells){
     for(var i = row1 + 1; i < row2; i++){
         if(cells[i][col] !== 0){
@@ -94,17 +92,21 @@ function noBlockVertical(col,row1,row2,cells){
     }
     return true;
 }
-
 function upScore(score) {
     let sc = document.getElementById("score");
     sc.textContent = score;
+    maxScore(score);
+    if (maxScore(score) === score) {
+
+        let audio = document.createElement("audio");
+        audio.src = "./music/win.mp3";
+        audio.play();
+    }
 }
-
-
 function gameOver(){
     let over = document.getElementById("over");
     let audio = document.createElement("audio");
-    audio.src = "./music/m3.mp3";
+    audio.src = "./music/lose.mp3";
     audio.play();
     over.style.visibility = "visible";
 }
@@ -125,4 +127,21 @@ function nospace(cells){
         }
     }
     return true;
+}
+function maxScore(score) {
+    let max = document.getElementById("max");
+    if (score > max.textContent) {
+        max.textContent = score;
+        let win = document.getElementById("win");
+        win.style.visibility = "visible";
+        let audio = document.createElement("audio");
+        audio.src = "./music/win.mp3";
+        audio.play();
+        if (typeof(Storage) !== "undefined") {
+            localStorage.setItem("maxscore", max.textContent);
+        } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+        }
+        return true;
+    }
 }

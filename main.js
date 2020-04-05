@@ -2,11 +2,13 @@ window.onload = function() {
     let cells = new Array();
     let newgame = document.getElementById('newgame');
     let frame = document.getElementById('frame');
-    let score = 0;
+    let score = 0; //分数
+    let max = document.getElementById('max');
 
     init();
     generateNum();
     generateNum();
+    max.textContent = localStorage.getItem("maxscore");
     newgame.onclick = function newgame() {
         score = 0;
         upScore(score);
@@ -19,6 +21,8 @@ window.onload = function() {
     function init() {
         let over1 = document.getElementById("over");
         over1.style.visibility = "hidden";
+        let win = document.getElementById("win");
+        win.style.visibility = "hidden";
         for (let i = 0; i < 4; i++) {
             cells[i] = new Array();
             for (let j = 0; j < 4; j++) {
