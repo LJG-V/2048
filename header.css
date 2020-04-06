@@ -54,7 +54,7 @@ h1 img{
     font-family: Arial;
     display: block;
     width: 100px;
-    margin: 20px auto;
+    margin: 5px auto;
     margin-top: 25px;
     padding: 10px 2px;
     border: gray 1px solid;
@@ -64,6 +64,21 @@ h1 img{
     color: white;
 }
 #newgame:hover{
+    background-color: #d28815;
+}
+#regret{
+    font-family: Arial;
+    display: block;
+    width: 100px;
+    margin: 0px auto;
+    padding: 10px 2px;
+    border: gray 1px solid;
+    background-color: chocolate;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+}
+#regret:hover{
     background-color: #d28815;
 }
 #frame{

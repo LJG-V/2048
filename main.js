@@ -2,19 +2,30 @@ window.onload = function() {
     let cells = new Array();
     let newgame = document.getElementById('newgame');
     let frame = document.getElementById('frame');
+    let count = document.getElementById("count");
     let score = 0; //分数
+    let record = [];
+    let recordScore = [];
+    let regretCount = 3;
     let max = document.getElementById('max');
 
     init();
     generateNum();
     generateNum();
+    count.textContent = regretCount;
+    allCell(cells);
     max.textContent = localStorage.getItem("maxscore");
+
     newgame.onclick = function newgame() {
         score = 0;
+        regretCount = 3;
+        count.textContent = regretCount;
+        clearRegret();
         upScore(score);
         init();
         generateNum();
         generateNum();
+        allCell(cells);
     };
 
     //初始化棋盘
@@ -33,6 +44,7 @@ window.onload = function() {
             }
         }
         updateCellView();
+
     }
 
     function updateCellView() {
@@ -91,6 +103,7 @@ window.onload = function() {
                     audio.src = "./music/m1.mp3";
                     audio.play();
                     window.setTimeout(generateNum,500);
+                    window.setTimeout(allCell,600,cells);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -100,6 +113,7 @@ window.onload = function() {
                     audio.src = "./music/m1.mp3";
                     audio.play();
                     window.setTimeout(generateNum,500);
+                    window.setTimeout(allCell,600,cells);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -109,6 +123,7 @@ window.onload = function() {
                     audio.src = "./music/m1.mp3";
                     audio.play();
                     window.setTimeout(generateNum,500);
+                    window.setTimeout(allCell,600,cells);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
@@ -118,10 +133,12 @@ window.onload = function() {
                     audio.src = "./music/m1.mp3";
                     audio.play();
                     window.setTimeout(generateNum,500);
+                    window.setTimeout(allCell,600,cells);
                     window.setTimeout(isGameOver,800);
                 }
                 break;
         }
+
     };
 
     function moveLeft() {
@@ -244,6 +261,60 @@ window.onload = function() {
         return true;
     }
 
+    function allCell(cells) {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                record.push(cells[i][j]);
+            }
+        }
+        if (record.length > 64) {
+            record.splice(0,16);
+        }
+        let nowScore = document.getElementById("score");
+        recordScore.push(nowScore.textContent);
+        if (recordScore.length > 4) {
+            recordScore.splice(0,1);
+        }
+    }
+
+    function clearRegret() {
+        for (let i = 0; i < record.length;) {
+                record.pop();
+        }
+        for (let i = 0; i < recordScore.length;) {
+            recordScore.pop();
+        }
+    }
+
+    regret.onclick = function() {
+        regretCount--;
+        if (regretCount >= 0){
+            let k = record.length - 32;
+            if (k >= 0){
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 4; j++) {
+                        cells[i][j] = record[k];
+                        k++;
+                    }
+                }
+                let m = recordScore.length - 2;
+                let nowScore = document.getElementById("score");
+                nowScore.textContent = recordScore[m];
+                updateCellView();
+                record.splice(record.length-16,record.length);
+                recordScore.splice(recordScore.length-1,recordScore.length);
+                count.textContent = regretCount;
+            }else{
+                regretCount++;
+                count.textContent = regretCount;
+            }
+        }else {
+            regretCount++;
+            count.textContent = regretCount;
+            alert("只能撤销3次哦~")
+        }
+    };
+
     function isGameOver(){
         if(nospace(cells) && nomove(cells)){
             gameOver();
@@ -269,6 +340,7 @@ window.onload = function() {
                 audio.src = "./music/m1.mp3";
                 audio.play();
                 setTimeout(generateNum,500);
+                setTimeout(allCell,600,cells);
                 setTimeout(isGameOver,800);
             }
         }else if (x<0 && absX) {
@@ -277,6 +349,7 @@ window.onload = function() {
                 audio.src = "./music/m1.mp3";
                 audio.play();
                 setTimeout(generateNum,500);
+                setTimeout(allCell,600,cells);
                 setTimeout(isGameOver,800);
             }
         }else if (y>0 && absY) {
@@ -285,6 +358,7 @@ window.onload = function() {
                 audio.src = "./music/m1.mp3";
                 audio.play();
                 setTimeout(generateNum,500);
+                setTimeout(allCell,600,cells);
                 setTimeout(isGameOver,800);
             }
         }else if (y<0 && absY) {
@@ -293,6 +367,7 @@ window.onload = function() {
                 audio.src = "./music/m1.mp3";
                 audio.play();
                 setTimeout(generateNum,500);
+                setTimeout(allCell,600,cells);
                 setTimeout(isGameOver,800);
             }
         }
